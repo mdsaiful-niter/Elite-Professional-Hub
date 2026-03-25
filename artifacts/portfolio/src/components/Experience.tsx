@@ -5,16 +5,16 @@ import { Briefcase } from "lucide-react";
 export function Experience() {
   const experiences = [
     {
-      role: "Operations Manager",
-      company: "Student Accommodation Facility",
+      role: "Co-owner & Operations Manager",
+      company: "ICONIC HOME — Student Hostel",
       period: "Concurrent with studies",
-      description: "Led operations management, logistics coordination, maintenance oversight, budget management, and ensured customer service excellence."
+      description: "Co-founded and manage ICONIC HOME, a student hostel business. Oversee day-to-day operations, logistics, maintenance, budgeting, and deliver consistent customer service excellence to residents."
     },
     {
       role: "Business Operations Manager",
-      company: "Apparel Retail Business",
+      company: "MAYER ACHOL — Cloth Store",
       period: "Concurrent with studies",
-      description: "Directed sourcing & procurement, inventory management, sales operations, marketing, and handled extensive customer relations along with supply chain exposure."
+      description: "Manage operations of MAYER ACHOL, a retail clothing store. Responsible for sourcing & procurement, inventory management, sales operations, marketing campaigns, customer relations, and supply chain oversight."
     },
     {
       role: "AI Content Designer",
