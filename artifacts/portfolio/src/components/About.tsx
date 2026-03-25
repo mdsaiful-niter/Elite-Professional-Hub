@@ -26,7 +26,7 @@ export function About() {
             I am a driven Industrial & Production Engineering student at <span className="text-white font-medium">NITER (University of Dhaka affiliation)</span>, combining rigorous engineering foundations with a profound passion for AI and digital innovation.
           </p>
           <p className="text-lg text-white/70 leading-relaxed">
-            With hands-on experience managing real business operations — from a student accommodation facility to an apparel retail business — I bring strategic thinking and operational excellence to every endeavor.
+            With hands-on experience running real businesses — co-managing <span className="text-white font-medium">ICONIC HOME</span> (a student hostel) and operating <span className="text-white font-medium">MAYER ACHOL</span> (a retail clothing store) — I bring strategic thinking and operational excellence to every endeavor.
           </p>
           <p className="text-lg text-white/70 leading-relaxed">
             Fluent in AI tools, creative design, and digital systems, I position myself as a bridge between traditional engineering paradigms and the cutting-edge capabilities of artificial intelligence.
