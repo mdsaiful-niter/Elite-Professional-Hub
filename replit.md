@@ -21,7 +21,8 @@ pnpm workspace monorepo using TypeScript. Each package manages its own dependenc
 ```text
 artifacts-monorepo/
 ├── artifacts/              # Deployable applications
-│   └── api-server/         # Express API server
+│   ├── api-server/         # Express API server
+│   └── portfolio/          # Personal portfolio website for Md Saiful Islam
 ├── lib/                    # Shared libraries
 │   ├── api-spec/           # OpenAPI spec + Orval codegen config
 │   ├── api-client-react/   # Generated React Query hooks
@@ -34,6 +35,29 @@ artifacts-monorepo/
 ├── tsconfig.json           # Root TS project references
 └── package.json            # Root package with hoisted devDeps
 ```
+
+## Portfolio Website — artifacts/portfolio
+
+A world-class personal portfolio for Md Saiful Islam.
+
+**Design**: Luxury dark futuristic theme with glassmorphism, gold accents, Framer Motion animations.
+**Fonts**: Syne (display) + Epilogue (body) from Google Fonts
+**Key Features**:
+- Full-screen Hero with animated background and profile photo
+- Sticky navigation with active section highlighting + mobile hamburger
+- Scroll-triggered reveal animations via Framer Motion
+- About section with biography, strengths, and languages
+- Skills section organized by category (Engineering, Software, AI, Programming)
+- Projects section with hover animations and live links
+- Experience & Education timeline
+- Achievements & Organizations
+- Contact section with form + social links
+- Scroll-to-top button
+- Mobile-responsive
+
+**Profile photo**: `artifacts/portfolio/public/saiful-islam.jpeg`
+
+**Content source**: Md Saiful Islam's personal master asset document
 
 ## TypeScript & Composite Projects
 
@@ -49,6 +73,16 @@ Every package extends `tsconfig.base.json` which sets `composite: true`. The roo
 - `pnpm run typecheck` — runs `tsc --build --emitDeclarationOnly` using project references
 
 ## Packages
+
+### `artifacts/portfolio` (`@workspace/portfolio`)
+
+React + Vite personal portfolio website. Frontend-only (static). 
+
+- All content hardcoded in components (no backend needed)
+- Framer Motion for animations, Tailwind CSS for styling
+- Syne + Epilogue Google Fonts, glass-panel utility classes
+- Components in `src/components/`, page in `src/pages/Home.tsx`
+- Profile photo in `public/saiful-islam.jpeg`
 
 ### `artifacts/api-server` (`@workspace/api-server`)
 
@@ -66,31 +100,20 @@ Express 5 API server. Routes live in `src/routes/` and use `@workspace/api-zod` 
 
 Database layer using Drizzle ORM with PostgreSQL. Exports a Drizzle client instance and schema models.
 
-- `src/index.ts` — creates a `Pool` + Drizzle instance, exports schema
-- `src/schema/index.ts` — barrel re-export of all models
-- `src/schema/<modelname>.ts` — table definitions with `drizzle-zod` insert schemas (no models definitions exist right now)
-- `drizzle.config.ts` — Drizzle Kit config (requires `DATABASE_URL`, automatically provided by Replit)
-- Exports: `.` (pool, db, schema), `./schema` (schema only)
-
-Production migrations are handled by Replit when publishing. In development, we just use `pnpm --filter @workspace/db run push`, and we fallback to `pnpm --filter @workspace/db run push-force`.
-
 ### `lib/api-spec` (`@workspace/api-spec`)
 
-Owns the OpenAPI 3.1 spec (`openapi.yaml`) and the Orval config (`orval.config.ts`). Running codegen produces output into two sibling packages:
-
-1. `lib/api-client-react/src/generated/` — React Query hooks + fetch client
-2. `lib/api-zod/src/generated/` — Zod schemas
+Owns the OpenAPI 3.1 spec (`openapi.yaml`) and the Orval config (`orval.config.ts`).
 
 Run codegen: `pnpm --filter @workspace/api-spec run codegen`
 
 ### `lib/api-zod` (`@workspace/api-zod`)
 
-Generated Zod schemas from the OpenAPI spec (e.g. `HealthCheckResponse`). Used by `api-server` for response validation.
+Generated Zod schemas from the OpenAPI spec.
 
 ### `lib/api-client-react` (`@workspace/api-client-react`)
 
-Generated React Query hooks and fetch client from the OpenAPI spec (e.g. `useHealthCheck`, `healthCheck`).
+Generated React Query hooks and fetch client from the OpenAPI spec.
 
 ### `scripts` (`@workspace/scripts`)
 
-Utility scripts package. Each script is a `.ts` file in `src/` with a corresponding npm script in `package.json`. Run scripts via `pnpm --filter @workspace/scripts run <script>`. Scripts can import any workspace package (e.g., `@workspace/db`) by adding it as a dependency in `scripts/package.json`.
+Utility scripts package. Each script is a `.ts` file in `src/` with a corresponding npm script in `package.json`.

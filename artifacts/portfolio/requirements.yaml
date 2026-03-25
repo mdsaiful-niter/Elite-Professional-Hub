@@ -1,0 +1,4 @@
+packages:
+  "framer-motion": "Used for all elegant, smooth scroll-triggered and hover animations required by the luxury futuristic design."
+  "clsx": "Utility for constructing className strings conditionally."
+  "tailwind-merge": "Utility for merging tailwind classes without style conflicts."

@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: 'Epilogue', sans-serif;
+  --font-display: 'Syne', sans-serif;
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-border: hsl(var(--border));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+}
+
+:root {
+  /* Luxury Dark Theme Palette */
+  --background: 240 15% 4%; /* #09090b - near black */
+  --foreground: 0 0% 95%; /* Soft white */
+  
+  /* Elegant Gold Accent */
+  --primary: 43 74% 49%; /* #D4AF37 */
+  --primary-foreground: 240 15% 4%;
+  
+  --border: 240 10% 15%;
+  --card: 240 15% 6%;
+  --card-foreground: 0 0% 95%;
+  
+  --muted: 240 10% 12%;
+  --muted-foreground: 240 5% 65%;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased font-sans selection:bg-primary/30 selection:text-primary;
+    background-image: 
+      radial-gradient(circle at 15% 50%, rgba(212, 175, 55, 0.03), transparent 25%),
+      radial-gradient(circle at 85% 30%, rgba(212, 175, 55, 0.03), transparent 25%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply font-bold tracking-tight;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/[0.02] backdrop-blur-xl border border-white/[0.05] shadow-2xl;
+  }
+  
+  .glass-panel-gold {
+    @apply bg-gradient-to-br from-primary/10 to-transparent backdrop-blur-xl border border-primary/20 shadow-[0_0_30px_rgba(212,175,55,0.1)];
+  }
+
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB] bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-silver {
+    @apply bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent;
+  }
+}
