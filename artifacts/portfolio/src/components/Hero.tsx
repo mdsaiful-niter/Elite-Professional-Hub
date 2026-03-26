@@ -74,7 +74,7 @@ export function Hero() {
       />
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full pt-28 pb-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full pt-20 pb-20">
         <motion.div style={{ x: textX, y: textY }} className="max-w-2xl">
 
           {/* Badge */}
