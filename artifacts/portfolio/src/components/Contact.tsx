@@ -3,42 +3,43 @@ import { motion } from "framer-motion";
 import { Section } from "./Section";
 import { MapPin, Phone, Mail, Send, Linkedin, CheckCircle2, AlertCircle } from "lucide-react";
 
+const GOOGLE_FORM_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLSeV0Wf1Qu4igROevMSgijBBFxRuI5vvA9CxfJO9ptjo-pM6BQ/formResponse";
+
 type Status = "idle" | "sending" | "success" | "error";
 
 export function Contact() {
   const [status, setStatus] = useState<Status>("idle");
-  const [errorMsg, setErrorMsg] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("sending");
-    setErrorMsg("");
 
     const form = e.currentTarget;
-    const data = {
-      name: (form.elements.namedItem("name") as HTMLInputElement).value,
-      email: (form.elements.namedItem("email") as HTMLInputElement).value,
-      subject: (form.elements.namedItem("subject") as HTMLInputElement).value,
-      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
-    };
+    const name = (form.elements.namedItem("name") as HTMLInputElement).value;
+    const email = (form.elements.namedItem("email") as HTMLInputElement).value;
+    const subject = (form.elements.namedItem("subject") as HTMLInputElement).value;
+    const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value;
+
+    const body = new URLSearchParams({
+      "entry.1548333999": name,
+      "entry.1001581522": email,
+      "entry.1138667942": subject,
+      "entry.185803057": message,
+    });
 
     try {
-      const res = await fetch("/api/contact", {
+      // Google Forms requires no-cors mode — response is always opaque but submission works
+      await fetch(GOOGLE_FORM_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        mode: "no-cors",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: body.toString(),
       });
-      const json = await res.json();
-      if (json.success) {
-        setStatus("success");
-        form.reset();
-      } else {
-        setStatus("error");
-        setErrorMsg(json.error || "Something went wrong. Please try again.");
-      }
+      setStatus("success");
+      form.reset();
     } catch {
       setStatus("error");
-      setErrorMsg("Network error. Please check your connection and try again.");
     }
   };
 
@@ -56,9 +57,25 @@ export function Contact() {
           </p>
 
           {[
-            { href: "mailto:msislam07@niter.edu.bd", icon: Mail, label: "Email", value: "msislam07@niter.edu.bd" },
-            { href: "tel:+8801318881674", icon: Phone, label: "Phone / WhatsApp", value: "+8801318881674" },
-            { href: "https://www.linkedin.com/in/md-saiful-a18011283", icon: Linkedin, label: "LinkedIn", value: "Connect Professionally", target: "_blank" },
+            {
+              href: "mailto:msislam07@niter.edu.bd",
+              icon: Mail,
+              label: "Email",
+              value: "msislam07@niter.edu.bd",
+            },
+            {
+              href: "tel:+8801318881674",
+              icon: Phone,
+              label: "Phone / WhatsApp",
+              value: "+8801318881674",
+            },
+            {
+              href: "https://www.linkedin.com/in/md-saiful-a18011283",
+              icon: Linkedin,
+              label: "LinkedIn",
+              value: "Connect Professionally",
+              target: "_blank",
+            },
           ].map(({ href, icon: Icon, label, value, target }) => (
             <a
               key={label}
@@ -97,27 +114,60 @@ export function Contact() {
           transition={{ duration: 0.5 }}
         >
           <form onSubmit={handleSubmit} className="glass-panel p-8 md:p-10 rounded-3xl space-y-5">
-            <h3 className="text-2xl font-display font-bold text-white mb-2">Send a Message</h3>
-            <p className="text-white/40 text-sm mb-6">Your message will be delivered directly to my inbox.</p>
+            <div className="mb-2">
+              <h3 className="text-2xl font-display font-bold text-white">Send a Message</h3>
+              <p className="text-white/40 text-sm mt-1">
+                Responses are collected securely and delivered to me directly.
+              </p>
+            </div>
 
             <div className="grid md:grid-cols-2 gap-5">
               <div className="space-y-1.5">
-                <label htmlFor="name" className="text-xs text-white/60 font-medium uppercase tracking-wide">Your Name</label>
-                <input id="name" name="name" type="text" required className={inputClass} placeholder="John Doe" />
+                <label htmlFor="name" className="text-xs text-white/60 font-medium uppercase tracking-wide">
+                  Your Name
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  required
+                  className={inputClass}
+                  placeholder="John Doe"
+                />
               </div>
               <div className="space-y-1.5">
-                <label htmlFor="email" className="text-xs text-white/60 font-medium uppercase tracking-wide">Your Email</label>
-                <input id="email" name="email" type="email" required className={inputClass} placeholder="john@example.com" />
+                <label htmlFor="email" className="text-xs text-white/60 font-medium uppercase tracking-wide">
+                  Your Email
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  className={inputClass}
+                  placeholder="john@example.com"
+                />
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <label htmlFor="subject" className="text-xs text-white/60 font-medium uppercase tracking-wide">Subject</label>
-              <input id="subject" name="subject" type="text" required className={inputClass} placeholder="Project Inquiry" />
+              <label htmlFor="subject" className="text-xs text-white/60 font-medium uppercase tracking-wide">
+                Subject
+              </label>
+              <input
+                id="subject"
+                name="subject"
+                type="text"
+                required
+                className={inputClass}
+                placeholder="Project Inquiry"
+              />
             </div>
 
             <div className="space-y-1.5">
-              <label htmlFor="message" className="text-xs text-white/60 font-medium uppercase tracking-wide">Message</label>
+              <label htmlFor="message" className="text-xs text-white/60 font-medium uppercase tracking-wide">
+                Message
+              </label>
               <textarea
                 id="message"
                 name="message"
@@ -132,19 +182,23 @@ export function Contact() {
             {status === "success" && (
               <div className="flex items-center gap-3 bg-emerald-500/10 border border-emerald-500/25 rounded-xl px-4 py-3">
                 <CheckCircle2 size={18} className="text-emerald-400 shrink-0" />
-                <p className="text-emerald-400 text-sm font-medium">Message sent! I'll get back to you soon.</p>
+                <p className="text-emerald-400 text-sm font-medium">
+                  Message sent! I'll get back to you soon.
+                </p>
               </div>
             )}
             {status === "error" && (
               <div className="flex items-center gap-3 bg-red-500/10 border border-red-500/25 rounded-xl px-4 py-3">
                 <AlertCircle size={18} className="text-red-400 shrink-0" />
-                <p className="text-red-400 text-sm">{errorMsg}</p>
+                <p className="text-red-400 text-sm">
+                  Something went wrong. Please try emailing me directly at msislam07@niter.edu.bd
+                </p>
               </div>
             )}
 
             <button
               type="submit"
-              disabled={status === "sending"}
+              disabled={status === "sending" || status === "success"}
               className="w-full py-4 rounded-xl font-semibold bg-primary text-primary-foreground hover:brightness-110 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {status === "sending" ? (
@@ -156,8 +210,15 @@ export function Contact() {
                   />
                   Sending…
                 </>
+              ) : status === "success" ? (
+                <>
+                  <CheckCircle2 size={16} />
+                  Message Sent!
+                </>
               ) : (
-                <>Send Message <Send size={16} /></>
+                <>
+                  Send Message <Send size={16} />
+                </>
               )}
             </button>
           </form>
