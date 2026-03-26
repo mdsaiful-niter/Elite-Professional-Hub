@@ -1,45 +1,30 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Section } from "./Section";
 import { MapPin, Phone, Mail, Send, Linkedin, CheckCircle2, AlertCircle } from "lucide-react";
 
-const GOOGLE_FORM_URL =
+const FORM_ACTION =
   "https://docs.google.com/forms/d/e/1FAIpQLSeV0Wf1Qu4igROevMSgijBBFxRuI5vvA9CxfJO9ptjo-pM6BQ/formResponse";
 
 type Status = "idle" | "sending" | "success" | "error";
 
 export function Contact() {
   const [status, setStatus] = useState<Status>("idle");
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("sending");
 
-    const form = e.currentTarget;
-    const name = (form.elements.namedItem("name") as HTMLInputElement).value;
-    const email = (form.elements.namedItem("email") as HTMLInputElement).value;
-    const subject = (form.elements.namedItem("subject") as HTMLInputElement).value;
-    const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value;
-
-    const body = new URLSearchParams({
-      "entry.1548333999": name,
-      "entry.1001581522": email,
-      "entry.1138667942": subject,
-      "entry.185803057": message,
-    });
-
-    try {
-      // Google Forms requires no-cors mode — response is always opaque but submission works
-      await fetch(GOOGLE_FORM_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: body.toString(),
-      });
-      setStatus("success");
-      form.reset();
-    } catch {
-      setStatus("error");
+    // Submit via hidden iframe — this is a real form POST that Google Forms accepts
+    if (formRef.current) {
+      formRef.current.submit();
+      // Show success after a short delay (iframe loads the Google response page silently)
+      setTimeout(() => {
+        setStatus("success");
+        formRef.current?.reset();
+      }, 1500);
     }
   };
 
@@ -48,6 +33,14 @@ export function Contact() {
 
   return (
     <Section id="contact" title="Get in Touch" subtitle="Let's Collaborate">
+      {/* Hidden iframe that absorbs the Google Form redirect response */}
+      <iframe
+        ref={iframeRef}
+        name="hidden-google-form-iframe"
+        title="Form submission"
+        style={{ display: "none" }}
+      />
+
       <div className="grid lg:grid-cols-12 gap-12">
 
         {/* Contact Info */}
@@ -113,7 +106,14 @@ export function Contact() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <form onSubmit={handleSubmit} className="glass-panel p-8 md:p-10 rounded-3xl space-y-5">
+          <form
+            ref={formRef}
+            onSubmit={handleSubmit}
+            action={FORM_ACTION}
+            method="POST"
+            target="hidden-google-form-iframe"
+            className="glass-panel p-8 md:p-10 rounded-3xl space-y-5"
+          >
             <div className="mb-2">
               <h3 className="text-2xl font-display font-bold text-white">Send a Message</h3>
               <p className="text-white/40 text-sm mt-1">
@@ -128,7 +128,7 @@ export function Contact() {
                 </label>
                 <input
                   id="name"
-                  name="name"
+                  name="entry.1548333999"
                   type="text"
                   required
                   className={inputClass}
@@ -141,7 +141,7 @@ export function Contact() {
                 </label>
                 <input
                   id="email"
-                  name="email"
+                  name="entry.1001581522"
                   type="email"
                   required
                   className={inputClass}
@@ -156,7 +156,7 @@ export function Contact() {
               </label>
               <input
                 id="subject"
-                name="subject"
+                name="entry.1138667942"
                 type="text"
                 required
                 className={inputClass}
@@ -170,7 +170,7 @@ export function Contact() {
               </label>
               <textarea
                 id="message"
-                name="message"
+                name="entry.185803057"
                 rows={5}
                 required
                 className={`${inputClass} resize-none`}
@@ -191,7 +191,7 @@ export function Contact() {
               <div className="flex items-center gap-3 bg-red-500/10 border border-red-500/25 rounded-xl px-4 py-3">
                 <AlertCircle size={18} className="text-red-400 shrink-0" />
                 <p className="text-red-400 text-sm">
-                  Something went wrong. Please try emailing me directly at msislam07@niter.edu.bd
+                  Something went wrong. Please email me at msislam07@niter.edu.bd
                 </p>
               </div>
             )}
