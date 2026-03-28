@@ -46,17 +46,17 @@ export function Hero() {
   }, [mouseX, mouseY]);
 
   return (
-    <section ref={containerRef} id="top" className="relative min-h-screen flex items-center overflow-hidden">
+    <section ref={containerRef} id="top" className="relative min-h-[calc(100vh-4rem)] flex items-center overflow-hidden">
 
       {/* Full-screen background image */}
       <div className="absolute inset-0 z-0">
         <img
           src={`${import.meta.env.BASE_URL}saiful-islam.jpeg`}
           alt="Md Saiful Islam"
-          className="w-full h-full object-cover object-center scale-105"
+          className="w-full h-full object-cover object-top"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#09090b]/96 via-[#09090b]/72 to-[#09090b]/25" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-transparent to-[#09090b]/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-transparent to-transparent" />
       </div>
 
       {/* Mouse-tracking glow */}
@@ -74,7 +74,7 @@ export function Hero() {
       />
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full pt-20 pb-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full py-16">
         <motion.div style={{ x: textX, y: textY }} className="max-w-2xl">
 
           {/* Badge */}

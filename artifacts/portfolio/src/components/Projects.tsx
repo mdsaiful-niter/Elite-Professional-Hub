@@ -50,6 +50,15 @@ const projects = [
     glow: "rgba(244,63,94,0.25)",
     number: "05",
   },
+  {
+    title: "Typing Master",
+    description: "A modern and interactive typing speed test web application where users can improve their typing speed and accuracy in real-time with instant feedback.",
+    tech: ["Web App", "Productivity", "Vercel"],
+    link: "https://type-master-web.vercel.app/",
+    color: "from-orange-500/20 via-amber-500/10 to-transparent",
+    glow: "rgba(249,115,22,0.3)",
+    number: "06",
+  },
 ];
 
 function ProjectCard({ project, idx }: { project: typeof projects[0]; idx: number }) {
