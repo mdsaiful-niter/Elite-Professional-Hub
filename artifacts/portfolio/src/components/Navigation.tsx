@@ -32,7 +32,26 @@ export function Navigation() {
     return () => observers.forEach((o) => o.disconnect());
   }, []);
 
-  const handleNavClick = () => setIsMobileMenuOpen(false);
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const href = (e.currentTarget as HTMLAnchorElement).getAttribute("href");
+    if (!href) return;
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    // Wait for the menu close animation to finish, then scroll
+    setTimeout(() => {
+      const id = href.replace("#", "");
+      if (id === "top" || id === "") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        const el = document.getElementById(id);
+        if (el) {
+          const offset = 64; // navbar height
+          const top = el.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: "smooth" });
+        }
+      }
+    }, 300);
+  };
 
   return (
     <motion.header
