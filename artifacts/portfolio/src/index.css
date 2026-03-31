@@ -16,6 +16,11 @@
   --color-muted-foreground: hsl(var(--muted-foreground));
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4rem; /* offset for fixed 64px navbar */
+}
+
 :root {
   /* Luxury Dark Theme Palette */
   --background: 240 15% 4%; /* #09090b - near black */

@@ -13,11 +13,6 @@ const links = [
 
 const sectionIds = ["about", "skills", "projects", "experience", "achievements", "contact"];
 
-function scrollTo(id: string) {
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: "smooth" });
-}
-
 export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
@@ -37,16 +32,7 @@ export function Navigation() {
     return () => observers.forEach((o) => o.disconnect());
   }, []);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const id = href.replace("#", "");
-    if (id === "top") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      scrollTo(id);
-    }
-    setIsMobileMenuOpen(false);
-  };
+  const handleNavClick = () => setIsMobileMenuOpen(false);
 
   return (
     <motion.header
@@ -61,7 +47,7 @@ export function Navigation() {
         <motion.a
           href="#top"
           whileHover={{ scale: 1.05 }}
-          onClick={(e) => handleNavClick(e, "#top")}
+          onClick={handleNavClick}
           className="text-xl font-display font-bold tracking-tighter text-white flex items-center gap-0.5"
         >
           SAIFUL
@@ -82,7 +68,7 @@ export function Navigation() {
                 key={link.name}
                 href={link.href}
                 whileHover={{ y: -1 }}
-                onClick={(e) => handleNavClick(e, link.href)}
+                onClick={handleNavClick}
                 className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-250 ${
                   isActive ? "text-primary" : "text-white/60 hover:text-white"
                 }`}
@@ -102,7 +88,7 @@ export function Navigation() {
             href="#contact"
             whileHover={{ scale: 1.04, y: -2 }}
             whileTap={{ scale: 0.97 }}
-            onClick={(e) => handleNavClick(e, "#contact")}
+            onClick={handleNavClick}
             className="ml-3 px-5 py-2 rounded-full text-sm font-semibold border border-primary/40 text-primary hover:bg-primary/12 transition-colors duration-300"
           >
             Hire Me
@@ -143,7 +129,7 @@ export function Navigation() {
                   initial={{ opacity: 0, x: -16 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.05 }}
-                  onClick={(e) => handleNavClick(e, link.href)}
+                  onClick={handleNavClick}
                   className={`px-4 py-3.5 rounded-xl text-base font-medium transition-colors ${
                     activeSection === link.href.slice(1)
                       ? "text-primary bg-primary/10 border border-primary/20"
