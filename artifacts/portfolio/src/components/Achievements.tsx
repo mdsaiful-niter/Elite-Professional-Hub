@@ -33,6 +33,16 @@ const achievements = [
     border: "border-emerald-500/20",
     glow: "rgba(16,185,129,0.2)",
   },
+  {
+    icon: Users,
+    title: "Runners-Up",
+    subtitle: "Interdepartmental Debate Competition — NITER Debating Society",
+    detail: "Remained undefeated through every round until the final, finishing as runners-up in the competition organised by the NITER Debating Society.",
+    color: "text-violet-400",
+    bg: "bg-violet-500/10",
+    border: "border-violet-500/20",
+    glow: "rgba(139,92,246,0.2)",
+  },
 ];
 
 const organizations = [
