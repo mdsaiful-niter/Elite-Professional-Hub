@@ -49,11 +49,21 @@ export function Hero() {
       id="top"
       className="relative min-h-[calc(100vh-4rem)] flex items-center overflow-hidden bg-[#09090b]"
     >
-      {/* Background subtle glow */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      {/* Mobile background image (hidden on lg+) */}
+      <div className="absolute inset-0 z-0 lg:hidden">
+        <img
+          src={`${import.meta.env.BASE_URL}saiful-islam.jpeg`}
+          alt=""
+          className="w-full h-full object-cover object-top"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#09090b]/90 via-[#09090b]/65 to-[#09090b]/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-transparent to-transparent" />
+      </div>
+
+      {/* Desktop background glow (hidden on mobile) */}
+      <div className="absolute inset-0 z-0 pointer-events-none hidden lg:block">
         <div className="absolute top-0 right-0 w-[55%] h-full bg-gradient-to-l from-primary/5 via-transparent to-transparent" />
         <div className="absolute bottom-0 left-0 w-[40%] h-[50%] bg-gradient-to-tr from-blue-500/5 via-transparent to-transparent" />
-        {/* Subtle grid */}
         <div
           className="absolute inset-0 opacity-[0.025]"
           style={{
