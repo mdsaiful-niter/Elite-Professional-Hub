@@ -59,6 +59,15 @@ const projects = [
     glow: "rgba(249,115,22,0.3)",
     number: "06",
   },
+  {
+    title: "AgentVerse",
+    description: "A curated directory of 40+ agentic AI tools organized by category — spanning autonomous agents, coding assistants, research tools, and more. All in one place.",
+    tech: ["AI Directory", "Agentic AI", "Web", "Vercel"],
+    link: "https://agentverse-seven-sable.vercel.app/",
+    color: "from-cyan-500/20 via-teal-500/10 to-transparent",
+    glow: "rgba(6,182,212,0.3)",
+    number: "07",
+  },
 ];
 
 function ProjectCard({ project, idx }: { project: typeof projects[0]; idx: number }) {
