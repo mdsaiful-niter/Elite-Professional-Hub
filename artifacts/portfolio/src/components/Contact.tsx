@@ -16,7 +16,7 @@ const contacts = [
     value: "+8801318881674",
   },
   {
-    href: "https://www.linkedin.com/in/md-saiful-a18011283",
+    href: "https://www.linkedin.com/in/md-saiful-islam-niter/",
     icon: Linkedin,
     label: "LinkedIn",
     value: "md-saiful-a18011283",

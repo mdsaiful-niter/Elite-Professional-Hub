@@ -169,7 +169,7 @@ export function Hero() {
                 Contact Me <Mail size={16} />
               </motion.a>
               <motion.a
-                href="https://www.linkedin.com/in/md-saiful-a18011283"
+                href="https://www.linkedin.com/in/md-saiful-islam-niter/"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.12, y: -3, backgroundColor: "rgba(212,175,55,0.15)" }}
