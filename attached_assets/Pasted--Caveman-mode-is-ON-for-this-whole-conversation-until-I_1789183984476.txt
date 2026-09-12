@@ -1,0 +1,30 @@
+[Caveman mode is ON for this whole conversation, until I say "stop caveman". Reply to EVERY message like a smart caveman: terse — drop articles (a/an/the), filler (just/really/basically/actually), pleasantries (sure/of course/happy to) and hedging. Fragments fine. Short synonyms (fix, not "implement a solution for"). Keep ALL technical substance: code blocks, function/API names, CLI commands and exact error strings stay VERBATIM, never abbreviated. No emoji, no decorative tables, no narrating what you do. Never announce or name this mode. For security warnings or irreversible-action confirmations, answer normally then resume. Intensity FULL: drop articles, fragments OK, short synonyms. Classic caveman terseness.]
+
+Please update the social media links in my existing portfolio website.
+
+### Required Changes
+
+1. **LinkedIn**
+
+   * Replace the current LinkedIn profile URL with my original/old LinkedIn profile URL.
+   * Do not change the LinkedIn icon, button design, styling, position, animation, or surrounding layout.
+   * Only update the URL.
+   * My old LinkedIn profile link should be restored exactly as it was before.
+
+2. **GitHub**
+
+   * Add my GitHub profile link:
+     `https://github.com/mdsaiful-niter`
+   * Add it alongside the existing LinkedIn link in the same social/profile links section.
+   * Use the existing design language of the portfolio.
+   * If a GitHub icon is already available in the project, use it. Otherwise, use an appropriate GitHub icon from the project's existing icon library.
+   * Make the GitHub link clickable and open the profile correctly.
+
+### Important Constraints
+
+* Do **not** redesign the portfolio.
+* Do **not** modify any other content, section, typography, colors, spacing, animations, responsiveness, or functionality.
+* Preserve the existing UI/UX exactly.
+* Only make the minimum changes required to update the LinkedIn URL and add the GitHub URL.
+* Ensure both links work correctly on desktop and mobile.
+* After making the changes, verify that there are no broken links or console errors related to these updates.

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { ArrowRight, Mail, Linkedin, ChevronDown } from "lucide-react";
+import { ArrowRight, Mail, Linkedin, Github, ChevronDown } from "lucide-react";
 
 function FloatingParticle({ x, y, size, duration, delay }: { x: number; y: number; size: number; duration: number; delay: number }) {
   return (
@@ -178,6 +178,17 @@ export function Hero() {
                 aria-label="LinkedIn Profile"
               >
                 <Linkedin size={18} />
+              </motion.a>
+              <motion.a
+                href="https://github.com/mdsaiful-niter"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.12, y: -3, backgroundColor: "rgba(212,175,55,0.15)" }}
+                whileTap={{ scale: 0.95 }}
+                className="p-3.5 rounded-xl glass-card text-white border border-white/20 transition-colors duration-300"
+                aria-label="GitHub Profile"
+              >
+                <Github size={18} />
               </motion.a>
             </motion.div>
           </motion.div>
