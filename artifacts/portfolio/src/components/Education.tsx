@@ -7,9 +7,8 @@ export function Education() {
     {
       degree: "BSc in Industrial & Production Engineering (IPE)",
       institution: "National Institute of Textile Engineering and Research (NITER)",
-      affiliation: "Affiliated with University of Dhaka",
       period: "2023 — 2027 (Expected)",
-      grade: "CGPA: 3.37 (1st Year) — Improving trend"
+      grade: "CGPA: 3.42 (2nd Year)"
     },
     {
       degree: "Higher Secondary Certificate (HSC) — Science",
@@ -47,7 +46,6 @@ export function Education() {
             
             <h3 className="text-xl font-display font-bold text-white mb-2 leading-tight">{edu.degree}</h3>
             <p className="text-white/80 font-medium mb-1">{edu.institution}</p>
-            {edu.affiliation && <p className="text-white/50 text-sm mb-4">{edu.affiliation}</p>}
             
             <div className="mt-4 pt-4 border-t border-white/10">
               <span className="text-primary font-semibold">{edu.grade}</span>
