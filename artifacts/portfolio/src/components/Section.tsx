@@ -12,13 +12,13 @@ interface SectionProps {
 
 export function Section({ id, title, subtitle, children, className }: SectionProps) {
   return (
-    <section id={id} className={cn("py-24 relative overflow-hidden", className)}>
+    <section id={id} className={cn("py-16 md:py-20 relative overflow-hidden", className)}>
       {/* Subtle section divider glow */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         {(title || subtitle) && (
-          <div className="mb-16 md:mb-20">
+          <div className="mb-12 md:mb-14">
             {subtitle && (
               <motion.div
                 initial={{ opacity: 0, x: -20 }}

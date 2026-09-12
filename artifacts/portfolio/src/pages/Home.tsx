@@ -19,7 +19,7 @@ export default function Home() {
 
       <Navigation />
       
-      <div className="relative z-10 space-y-8 pb-12 pt-16">
+      <div className="relative z-10 pb-12 pt-16">
         <Hero />
         <About />
         <Education />
