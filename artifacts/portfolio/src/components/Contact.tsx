@@ -19,7 +19,7 @@ const contacts = [
     href: "https://www.linkedin.com/in/md-saiful-islam-niter/",
     icon: Linkedin,
     label: "LinkedIn",
-    value: "md-saiful-a18011283",
+    value: "Md Saiful islam",
     external: true,
   },
 ];
