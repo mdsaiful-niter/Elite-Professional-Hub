@@ -4,14 +4,14 @@ import { Menu, X } from "lucide-react";
 
 const links = [
   { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
+  { name: "Education", href: "#education" },
   { name: "Projects", href: "#projects" },
   { name: "Experience", href: "#experience" },
   { name: "Achievements", href: "#achievements" },
   { name: "Contact", href: "#contact" },
 ];
 
-const sectionIds = ["about", "skills", "projects", "experience", "achievements", "contact"];
+const sectionIds = ["about", "education", "projects", "experience", "achievements", "contact"];
 
 export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
