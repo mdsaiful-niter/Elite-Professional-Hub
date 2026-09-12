@@ -20,6 +20,54 @@ const particles = [
   { x: 30, y: 55, size: 3, duration: 5, delay: 0.6 },
 ];
 
+function HeroSignalGraphic() {
+  return (
+    <div aria-hidden="true" className="absolute inset-0 z-[1] overflow-hidden pointer-events-none">
+      {/* Slow scan beams make the background motion readable without competing with the copy. */}
+      <motion.div
+        className="absolute top-[18%] left-[-20%] h-px w-[140%] bg-gradient-to-r from-transparent via-primary/60 to-transparent"
+        animate={{ x: ["-18%", "18%"], opacity: [0, 0.8, 0] }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute top-[65%] left-[-20%] h-px w-[140%] bg-gradient-to-r from-transparent via-blue-400/50 to-transparent"
+        animate={{ x: ["18%", "-18%"], opacity: [0, 0.65, 0] }}
+        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+      />
+
+      {/* Orbiting rings and nodes create a visible systems/HUD-style focal point. */}
+      <motion.div
+        className="absolute left-[2%] top-[16%] h-[22rem] w-[22rem] rounded-full border border-primary/25 md:left-[54%] md:top-[15%] md:h-[34rem] md:w-[34rem]"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
+      >
+        <motion.span
+          className="absolute left-1/2 top-[-5px] h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-primary shadow-[0_0_18px_rgba(212,175,55,0.95)]"
+          animate={{ scale: [1, 1.7, 1], opacity: [0.7, 1, 0.7] }}
+          transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </motion.div>
+      <motion.div
+        className="absolute left-[8%] top-[23%] h-[18rem] w-[18rem] rounded-full border border-blue-300/20 md:left-[58%] md:top-[21%] md:h-[25rem] md:w-[25rem]"
+        animate={{ rotate: -360 }}
+        transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+      >
+        <span className="absolute bottom-[-4px] left-1/2 h-2 w-2 -translate-x-1/2 rounded-full bg-blue-300 shadow-[0_0_16px_rgba(147,197,253,0.9)]" />
+      </motion.div>
+      <motion.div
+        className="absolute left-[23%] top-[35%] h-28 w-28 rounded-full bg-primary/15 blur-2xl md:left-[67%] md:top-[38%] md:h-44 md:w-44"
+        animate={{ scale: [0.75, 1.25, 0.75], opacity: [0.35, 0.8, 0.35] }}
+        transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute left-[29%] top-[42%] h-3 w-3 rounded-full border border-primary/80 bg-primary/50 shadow-[0_0_22px_rgba(212,175,55,0.9)] md:left-[72%] md:top-[45%]"
+        animate={{ scale: [1, 1.8, 1], opacity: [0.55, 1, 0.55] }}
+        transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
+      />
+    </div>
+  );
+}
+
 export function Hero() {
   return (
     <section
@@ -76,6 +124,7 @@ export function Hero() {
 
       {/* Floating particles */}
       {particles.map((p, i) => <FloatingParticle key={i} {...p} />)}
+      <HeroSignalGraphic />
 
       {/* Two-column layout */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 py-12 overflow-visible">

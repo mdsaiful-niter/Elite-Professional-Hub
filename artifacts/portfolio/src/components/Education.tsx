@@ -13,7 +13,6 @@ export function Education() {
     {
       degree: "Higher Secondary Certificate (HSC) — Science",
       institution: "Alauddin Ahmed Chowdhury Nasim College, Parshuram, Feni",
-      grade: "GPA: 5.00 (Perfect Score)"
     },
     {
       degree: "Secondary School Certificate (SSC) — Science",
@@ -47,9 +46,11 @@ export function Education() {
             <h3 className="text-xl font-display font-bold text-white mb-2 leading-tight">{edu.degree}</h3>
             <p className="text-white/80 font-medium mb-1">{edu.institution}</p>
             
-            <div className="mt-4 pt-4 border-t border-white/10">
-              <span className="text-primary font-semibold">{edu.grade}</span>
-            </div>
+            {edu.grade && (
+              <div className="mt-4 pt-4 border-t border-white/10">
+                <span className="text-primary font-semibold">{edu.grade}</span>
+              </div>
+            )}
           </motion.div>
         ))}
       </div>
