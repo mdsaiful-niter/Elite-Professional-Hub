@@ -47,14 +47,14 @@ export function Hero() {
     <section
       ref={containerRef}
       id="top"
-      className="relative min-h-[calc(100vh-4rem)] flex items-center overflow-hidden bg-[#09090b]"
+      className="relative min-h-[calc(100vh-4rem)] flex items-center overflow-x-hidden bg-[#09090b]"
     >
       {/* Mobile background image (hidden on tablet and desktop) */}
       <div className="absolute inset-0 z-0 md:hidden">
         <img
           src={`${import.meta.env.BASE_URL}saiful-islam.jpeg`}
           alt=""
-          className="w-full h-full object-cover object-top"
+          className="w-full h-full object-contain object-top"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#09090b]/90 via-[#09090b]/65 to-[#09090b]/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-transparent to-transparent" />
