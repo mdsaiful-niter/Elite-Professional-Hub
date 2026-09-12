@@ -78,7 +78,7 @@ export function Navigation() {
         </motion.a>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden lg:flex items-center gap-1">
           {links.map((link) => {
             const id = link.href.slice(1);
             const isActive = activeSection === id;
@@ -119,7 +119,7 @@ export function Navigation() {
           type="button"
           aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           onClick={() => setIsMobileMenuOpen((v) => !v)}
-          className="md:hidden text-white p-2 rounded-lg border border-white/10 bg-white/5 active:scale-95 transition-transform"
+          className="lg:hidden text-white p-2 rounded-lg border border-white/10 bg-white/5 active:scale-95 transition-transform"
         >
           <AnimatePresence mode="wait" initial={false}>
             {isMobileMenuOpen
@@ -138,7 +138,7 @@ export function Navigation() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.28, ease: [0.23, 1, 0.32, 1] }}
-            className="md:hidden overflow-hidden border-t border-white/[0.08] bg-[#0f0f14]/95 backdrop-blur-2xl"
+            className="lg:hidden overflow-hidden border-t border-white/[0.08] bg-[#0f0f14]/95 backdrop-blur-2xl"
           >
             <div className="flex flex-col px-4 py-3 gap-1">
               {links.map((link, i) => (
