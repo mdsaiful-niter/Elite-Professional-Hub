@@ -7,7 +7,6 @@ import { Experience } from "@/components/Experience";
 import { Achievements } from "@/components/Achievements";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
-import { ScrollToTop } from "@/components/ScrollToTop";
 
 export default function Home() {
   return (
@@ -31,7 +30,6 @@ export default function Home() {
       </div>
       
       <Footer />
-      <ScrollToTop />
     </main>
   );
 }
