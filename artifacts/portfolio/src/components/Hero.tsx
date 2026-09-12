@@ -1,5 +1,4 @@
-import { useEffect, useRef } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, Mail, Linkedin, Github, ChevronDown } from "lucide-react";
 
 function FloatingParticle({ x, y, size, duration, delay }: { x: number; y: number; size: number; duration: number; delay: number }) {
@@ -22,33 +21,25 @@ const particles = [
 ];
 
 export function Hero() {
-  const containerRef = useRef<HTMLElement>(null);
-  const mouseX = useMotionValue(0.5);
-  const mouseY = useMotionValue(0.5);
-
-  const textX = useSpring(useTransform(mouseX, [0, 1], [-6, 6]), { stiffness: 80, damping: 25 });
-  const textY = useSpring(useTransform(mouseY, [0, 1], [-4, 4]), { stiffness: 80, damping: 25 });
-  const imgX = useSpring(useTransform(mouseX, [0, 1], [6, -6]), { stiffness: 60, damping: 25 });
-  const imgY = useSpring(useTransform(mouseY, [0, 1], [4, -4]), { stiffness: 60, damping: 25 });
-
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const onMove = (e: MouseEvent) => {
-      const rect = el.getBoundingClientRect();
-      mouseX.set((e.clientX - rect.left) / rect.width);
-      mouseY.set((e.clientY - rect.top) / rect.height);
-    };
-    el.addEventListener("mousemove", onMove);
-    return () => el.removeEventListener("mousemove", onMove);
-  }, [mouseX, mouseY]);
-
   return (
     <section
-      ref={containerRef}
       id="top"
-      className="relative min-h-[calc(100vh-4rem)] flex items-center overflow-x-hidden bg-[#09090b]"
+      className="relative min-h-[calc(100vh-4rem)] flex items-center overflow-hidden bg-[#09090b]"
     >
+      {/* Animated background graphics — contained so they never create page scroll */}
+      <motion.div
+        aria-hidden="true"
+        className="absolute -top-32 right-[10%] h-80 w-80 rounded-full bg-primary/10 blur-[100px] pointer-events-none"
+        animate={{ x: [0, -30, 0], y: [0, 24, 0], scale: [1, 1.12, 1], opacity: [0.35, 0.6, 0.35] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        aria-hidden="true"
+        className="absolute -bottom-40 left-[8%] h-96 w-96 rounded-full bg-blue-500/10 blur-[110px] pointer-events-none"
+        animate={{ x: [0, 34, 0], y: [0, -26, 0], scale: [1.05, 0.92, 1.05], opacity: [0.25, 0.5, 0.25] }}
+        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+      />
+
       {/* Mobile background image (hidden on tablet and desktop) */}
       <div className="absolute inset-0 z-0 md:hidden">
         <img
@@ -65,28 +56,38 @@ export function Hero() {
         <div className="absolute top-0 right-0 w-[55%] h-full bg-gradient-to-l from-primary/5 via-transparent to-transparent" />
         <div className="absolute bottom-0 left-0 w-[40%] h-[50%] bg-gradient-to-tr from-blue-500/5 via-transparent to-transparent" />
         <div
-          className="absolute inset-0 opacity-[0.025]"
+          className="absolute inset-0 opacity-[0.04]"
           style={{
             backgroundImage: "linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)",
             backgroundSize: "80px 80px",
           }}
         />
       </div>
+      <motion.div
+        aria-hidden="true"
+        className="absolute inset-0 z-0 pointer-events-none opacity-[0.035]"
+        style={{
+          backgroundImage: "radial-gradient(circle at center, rgba(212,175,55,0.8) 1px, transparent 1px)",
+          backgroundSize: "46px 46px",
+        }}
+        animate={{ backgroundPosition: ["0px 0px", "46px 46px"] }}
+        transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+      />
 
       {/* Floating particles */}
       {particles.map((p, i) => <FloatingParticle key={i} {...p} />)}
 
       {/* Two-column layout */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 py-12">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 py-12 overflow-visible">
         <div className="grid md:grid-cols-2 gap-6 lg:gap-10 items-center">
 
           {/* LEFT — Text Content */}
-          <motion.div style={{ x: textX, y: textY }}>
+          <div>
 
             {/* Badge */}
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.1, ease: [0.23, 1, 0.32, 1] }}
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/35 bg-primary/10 backdrop-blur-sm mb-7"
             >
@@ -101,57 +102,32 @@ export function Hero() {
             </motion.div>
 
             {/* Name */}
-            <div className="mb-5 overflow-hidden">
-              <motion.div
-                initial={{ opacity: 0, y: 60 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.25, ease: [0.23, 1, 0.32, 1] }}
-                className="text-5xl md:text-7xl font-display font-bold leading-none text-white/90"
-              >
+            <div className="mb-5">
+              <div className="text-5xl md:text-7xl font-display font-bold leading-none text-white/90">
                 Md Saiful
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 60 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.38, ease: [0.23, 1, 0.32, 1] }}
-                className="text-5xl md:text-7xl font-display font-bold leading-none text-gradient-gold"
-              >
+              </div>
+              <div className="text-5xl md:text-7xl font-display font-bold leading-none text-gradient-gold">
                 Islam
-              </motion.div>
+              </div>
             </div>
 
             {/* Subtitle */}
-            <motion.p
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, delay: 0.5 }}
-              className="text-white/50 font-medium tracking-widest uppercase text-xs mb-6"
-            >
+            <p className="text-white/50 font-medium tracking-widest uppercase text-xs mb-6">
               Industrial &amp; Production Engineer · NITER · University of Dhaka
-            </motion.p>
+            </p>
 
             {/* Tagline card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20, scale: 0.97 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.7, delay: 0.6, ease: [0.23, 1, 0.32, 1] }}
-              className="glass-card rounded-2xl px-5 py-4 mb-8 max-w-md"
-            >
+            <div className="glass-card rounded-2xl px-5 py-4 mb-8 max-w-md">
               <p className="text-sm text-white/75 font-light leading-relaxed">
                 Bridging engineering excellence with the cutting-edge world of artificial intelligence.
               </p>
               <p className="italic text-primary/90 mt-1.5 font-medium text-xs">
                 "Engineering the Future, One System at a Time."
               </p>
-            </motion.div>
+            </div>
 
             {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.75 }}
-              className="flex flex-wrap items-center gap-3"
-            >
+            <div className="flex flex-wrap items-center gap-3">
               <motion.a
                 href="#projects"
                 whileHover={{ scale: 1.05, y: -3 }}
@@ -190,12 +166,11 @@ export function Hero() {
               >
                 <Github size={18} />
               </motion.a>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           {/* RIGHT — Full Photo */}
           <motion.div
-            style={{ x: imgX, y: imgY }}
             initial={{ opacity: 0, scale: 0.95, x: 40 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
