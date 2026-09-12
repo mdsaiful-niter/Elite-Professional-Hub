@@ -1,5 +1,5 @@
 import { Section } from "./Section";
-import { Brain, Globe2, CheckCircle2, Briefcase, GraduationCap } from "lucide-react";
+import { Brain, CheckCircle2 } from "lucide-react";
 
 const strengths = [
   "Fast Learner",
@@ -8,12 +8,6 @@ const strengths = [
   "Critical Thinking",
   "Multi-Angle Analysis",
   "Expert Communicator & Debater",
-];
-
-const stats = [
-  { icon: GraduationCap, label: "University", value: "NITER · Dhaka" },
-  { icon: Briefcase, label: "Businesses", value: "2 Active" },
-  { icon: Globe2, label: "Languages", value: "Bangla, English, Hindi" },
 ];
 
 export function About() {
@@ -31,20 +25,6 @@ export function About() {
             professional environment.
           </p>
 
-          {/* Stats row */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
-            {stats.map(({ icon: Icon, label, value }) => (
-              <div key={label} className="glass-panel rounded-2xl p-4 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
-                  <Icon className="text-primary" size={16} />
-                </div>
-                <div>
-                  <p className="text-white/45 text-xs mb-0.5">{label}</p>
-                  <p className="text-white text-sm font-medium leading-tight">{value}</p>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Right — Strengths */}
