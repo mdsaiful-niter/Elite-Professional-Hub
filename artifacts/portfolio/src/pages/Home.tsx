@@ -1,10 +1,9 @@
 import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
-import { Skills } from "@/components/Skills";
+import { Education } from "@/components/Education";
 import { Projects } from "@/components/Projects";
 import { Experience } from "@/components/Experience";
-import { Education } from "@/components/Education";
 import { Achievements } from "@/components/Achievements";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
@@ -24,10 +23,9 @@ export default function Home() {
       <div className="relative z-10 space-y-8 pb-12 pt-16">
         <Hero />
         <About />
-        <Skills />
+        <Education />
         <Projects />
         <Experience />
-        <Education />
         <Achievements />
         <Contact />
       </div>
