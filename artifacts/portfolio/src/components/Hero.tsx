@@ -49,8 +49,8 @@ export function Hero() {
       id="top"
       className="relative min-h-[calc(100vh-4rem)] flex items-center overflow-hidden bg-[#09090b]"
     >
-      {/* Mobile background image (hidden on lg+) */}
-      <div className="absolute inset-0 z-0 lg:hidden">
+      {/* Mobile background image (hidden on tablet and desktop) */}
+      <div className="absolute inset-0 z-0 md:hidden">
         <img
           src={`${import.meta.env.BASE_URL}saiful-islam.jpeg`}
           alt=""
@@ -78,7 +78,7 @@ export function Hero() {
 
       {/* Two-column layout */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 py-12">
-        <div className="grid lg:grid-cols-2 gap-10 items-center">
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-10 items-center">
 
           {/* LEFT — Text Content */}
           <motion.div style={{ x: textX, y: textY }}>
@@ -199,7 +199,7 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.95, x: 40 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
-            className="relative hidden lg:flex justify-center items-end"
+            className="relative hidden md:flex justify-center items-center"
           >
             {/* Glow behind image */}
             <div className="absolute inset-0 bg-gradient-radial from-primary/10 via-transparent to-transparent rounded-3xl blur-2xl" />
