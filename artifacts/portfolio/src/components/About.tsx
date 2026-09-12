@@ -24,19 +24,11 @@ export function About() {
         {/* Left — Bio */}
         <div className="lg:col-span-7 space-y-6">
           <p className="text-lg text-white/70 leading-relaxed">
-            I am a driven Industrial & Production Engineering student at{" "}
-            <span className="text-white font-medium">NITER (University of Dhaka affiliation)</span>,
-            combining rigorous engineering foundations with a passion for AI and digital innovation.
-          </p>
-          <p className="text-lg text-white/70 leading-relaxed">
-            Beyond academics, I run two real businesses — co-managing{" "}
-            <span className="text-white font-medium">ICONIC HOME</span> (a student hostel) and
-            operating <span className="text-white font-medium">MAYER ACHOL</span> (a retail clothing
-            store) — bringing strategic thinking and operational excellence to every challenge.
-          </p>
-          <p className="text-lg text-white/70 leading-relaxed">
-            Fluent in AI tools and creative design, I position myself as a bridge between traditional
-            engineering and the cutting-edge world of artificial intelligence.
+            Industrial and Production Engineering student passionate about problem-solving, process
+            improvement, and technology. Skilled in AI tools, research, web development, and graphic
+            design. I enjoy turning ideas into practical solutions and continuously learning new
+            skills. Seeking opportunities to contribute, grow, and create meaningful value in a
+            professional environment.
           </p>
 
           {/* Stats row */}
