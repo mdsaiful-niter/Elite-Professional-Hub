@@ -68,6 +68,15 @@ const projects = [
     glow: "rgba(6,182,212,0.3)",
     number: "07",
   },
+  {
+    title: "Assignment Problem Solver",
+    description: "Solve assignment optimization problems with the Hungarian method, finding an optimal allocation for the supplied cost matrix.",
+    tech: ["Optimization", "Hungarian Method", "Web App"],
+    link: "https://assignment-blue-pi.vercel.app/",
+    color: "from-fuchsia-500/20 via-violet-500/10 to-transparent",
+    glow: "rgba(168,85,247,0.3)",
+    number: "08",
+  },
 ];
 
 function ProjectCard({ project, idx }: { project: typeof projects[0]; idx: number }) {
