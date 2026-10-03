@@ -13,6 +13,7 @@ export function Education() {
     {
       degree: "Higher Secondary Certificate (HSC) — Science",
       institution: "Alauddin Ahmed Chowdhury Nasim College, Parshuram, Feni",
+      grade: "CGPA: 5.00/5.00"
     },
     {
       degree: "Secondary School Certificate (SSC) — Science",
